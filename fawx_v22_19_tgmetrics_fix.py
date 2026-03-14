@@ -215,7 +215,7 @@ def get_host_ua() -> str:
                 "AppleWebKit/537.36 (KHTML, like Gecko) "
                 "Chrome/114.0.0.0 Mobile Safari/537.36"
             )
-    return _host_ua  # type: ignore[return-value]
+    return _host_ua
 
 
 # ---------------------------------------------------------------------------
@@ -655,7 +655,7 @@ class TgOutboxSqlite:
                 "INSERT INTO outbox(payload) VALUES(?)", (payload,)
             )
             conn.commit()
-            return cur.lastrowid  # type: ignore[return-value]
+            return int(cur.lastrowid)
 
     def mark_retry(self, row_id: int) -> None:
         """FIX H: Uses >= instead of > for the boundary check (off-by-one fix)."""
@@ -678,7 +678,7 @@ class TgOutboxSqlite:
             rows = conn.execute(
                 "SELECT id, payload FROM outbox WHERE dead=0 ORDER BY id"
             ).fetchall()
-        return rows  # type: ignore[return-value]
+        return list(rows)
 
 
 # ---------------------------------------------------------------------------

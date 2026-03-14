@@ -59,7 +59,11 @@ VERSION = "top20-wakelock"
 MAX_WORKERS = 20
 TIMEOUT = 10
 RETRY = 2
-USER_AGENT = "Mozilla/5.0 (Linux; Android 11; Termux) AppleWebKit/537.36"
+USER_AGENT = (
+    "Mozilla/5.0 (Linux; Android 11; Termux) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/114.0.0.0 Mobile Safari/537.36"
+)
 
 CATEGORY_GORUNTULU = "GORUNTULU"
 CATEGORY_ADULT = "ADULT"
@@ -317,8 +321,6 @@ def check_line_for_server(
             }
             state.update_hit(category)
             state.add_hit_record(hit_info)
-            with srv_state.active_threads.__class__:  # pragma: no cover – lock guard comment
-                pass
             srv_state.hits += 1
             # FIX 7: checks increment is inside the lock
             with state.lock:
