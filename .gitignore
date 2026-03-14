@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Runtime databases (generated at runtime)
+global_userpass.db
+rate_limit.db
+tg_outbox.db
+*.db-wal
+*.db-shm
+
+# Spool files
+spool/
